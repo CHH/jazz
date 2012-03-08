@@ -1,0 +1,20 @@
+{
+    "name": "chh/jazz",
+    "description": "When you do need to generate HTML with PHP.",
+    "authors": [
+        {
+            "name": "Christoph Hochstrasser",
+            "email": "christoph.hochstrasser@gmail.com",
+            "homepage": "http://christophh.net"
+        }
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-0": {
+            "Jazz": "lib/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.3"
+    }
+}

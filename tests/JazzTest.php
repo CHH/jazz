@@ -5,8 +5,8 @@ class JazzTest extends \PHPUnit_Framework_TestCase
     function testShortTag()
     {
         $this->assertEquals(
-            "<br />",
-            Jazz::render(["#br"])->saveHTML()
+            "<br>\n",
+            Jazz::render(["#br"])
         );
     }
 
@@ -29,8 +29,8 @@ class JazzTest extends \PHPUnit_Framework_TestCase
     function testRendersEmptyBody()
     {
         $this->assertEquals(
-            '<p></p>',
-            Jazz::render(["#p", ""])->saveHTML()
+            "<p></p>\n",
+            Jazz::render(["#p", ""])
         );
     }
 
@@ -44,7 +44,7 @@ class JazzTest extends \PHPUnit_Framework_TestCase
             ],
             Jazz::render(
                 ["#h1", ["role" => "banner"], "Unicorns and Rainbows"]
-            )->saveHTML()
+            )
         );
     }
 
@@ -93,11 +93,11 @@ class JazzTest extends \PHPUnit_Framework_TestCase
     function testJoinsNodeListWithoutRootElement()
     {
         $this->assertEquals(
-            "<p>Foo</p><p>Bar</p>",
+            "<p>Foo</p><p>Bar</p>\n",
             Jazz::render([
                 ["#p", "Foo"],
                 ["#p", "Bar"]
-            ])->saveHTML()
+            ])
         );
     }
 
@@ -115,10 +115,12 @@ class JazzTest extends \PHPUnit_Framework_TestCase
             "tag" => "p",
             "attributes" => [
                 "class" => "foo bar baz"
-            ]
+            ],
+            "content" => "Foo"
         ];
 
-        $actual = Jazz::render(["#p", ["class" => ["foo", "bar", "baz"], "Foo"]]);
+        $actual = Jazz::render(["#p", ["class" => ["foo", "bar", "baz"]], "Foo"]);
+
         $this->assertTag($expected, $actual);
     }
 }

@@ -59,21 +59,8 @@ class Jazz
             $document = new \DOMDocument;
         }
 
-        if (is_array($node)) {
-            if (static::isTag($node)) {
-                $document->appendChild(static::renderHtmlTag($node, $document));
-            } else {
-                foreach ($node as $n) {
-                    foreach (static::render($n, $document)->childNodes as $el) {
-                        $document->appendChild($el);
-                    }
-                }
-            }
-        } else {
-            $document->appendChild($document->createTextNode($node));
-        }
-
-        return $document;
+        $document->appendChild(static::renderNode($node, $document));
+        return $document->saveHTML();
     }
 
     # Checks if the provided node hash is a tag, by 
@@ -101,43 +88,50 @@ class Jazz
     # node - Tag as Array.
     #
     # Returns the HTML as String.
-    protected static function renderHtmlTag($node, $document)
+    protected static function renderNode($node, $document)
     {
-        # Strip the leading "#"
-        $tagName    = substr(array_shift($node), 1);
-        $attributes = array();
-
-        if (sizeof($node) > 2) {
-            throw new \UnexpectedValueException(
-                "Tags must not consist of more than three elements"
-            );
+        if (is_string($node)) {
+            return $document->createTextNode($node);
         }
 
-        foreach ($node as $el) {
-            # Is the tag argument an attributes array?
-            if (is_array($el) and count(array_filter(array_keys($el), "is_string")) > 0) {
-                $attributes = $el;
-            } else {
-                $content = $el;
+        if (static::isTag($node)) {
+            # Strip the leading "#"
+            $tagName    = substr(array_shift($node), 1);
+            $attributes = array();
+
+            if (sizeof($node) > 2) {
+                throw new \UnexpectedValueException(
+                    "Tags must not consist of more than three elements"
+                );
+            }
+
+            foreach ($node as $el) {
+                # Is the tag argument an attributes array?
+                if (is_array($el) and count(array_filter(array_keys($el), "is_string")) > 0) {
+                    $attributes = $el;
+                } else {
+                    $content = $el;
+                }
+            }
+
+            $el = $document->createElement($tagName);
+
+            foreach ($attributes as $attr => $value) {
+                if (is_array($value)) $value = join(" ", $value);
+                $el->setAttribute($attr, $value);
+            }
+
+            if (isset($content)) {
+                $el->appendChild(static::renderNode($content, $document));
+            }
+        } else {
+            $el = $document->createDocumentFragment();
+
+            foreach ($node as $child) {
+                $el->appendChild(static::renderNode($child, $document));
             }
         }
 
-        $out = $document->createElement($tagName);
-
-        foreach ($attributes as $attr => $value) {
-            if (is_array($value)) $value = join(" ", $value);
-            $out->setAttribute($attr, $value);
-        }
-
-        if (!isset($content)) {
-            return $out;
-        }
-
-        if($content) {
-            foreach (static::render($content, $document)->childNodes as $node) {
-                $out->appendChild($node);
-            }
-        }
-        return $out;
+        return $el;
     }
 }

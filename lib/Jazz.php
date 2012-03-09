@@ -40,7 +40,7 @@ if (!extension_loaded("dom")) {
 #   # string("<br>")
 #   
 #   echo Jazz::render([
-#     ["section", ["class" => "content"], [
+#     ["#section", ["class" => "content"], [
 #       ["#p", "This is a paragraph."],
 #       ["#p", "This is a second paragraph."]
 #     ]]

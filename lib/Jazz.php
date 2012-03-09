@@ -96,9 +96,8 @@ class Jazz
         }
 
         foreach ($node as $el) {
-            # Look if the second element is an associative attributes
-            # array or a body.
-            if (is_array($el) and is_string(key($el))) {
+            # Is the tag argument an attributes array?
+            if (is_array($el) and count(array_filter(array_keys($el), "is_string")) > 0) {
                 $attributes = $el;
             } else {
                 $content = $el;

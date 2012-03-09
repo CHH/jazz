@@ -57,11 +57,14 @@ class Jazz
     #
     # node     - Tag as Array, Array of sub nodes or a single 
     #            stringable element.
-    # document - DOMDocument instance, optional. Use this 
+    # document - DOMDocument instance or variable, optional. Use this 
     #            if you want to set custom options on the document.
+    #            This is also a reference, so just pass a variable if
+    #            you want to get hold of the created DOMDocument for
+    #            other purposes.
     # 
     # Returns HTML as String.
-    static function render($node, $document = null)
+    static function render($node, &$document = null)
     {
         $document = $document ?: new \DOMDocument;
         $document->appendChild(static::renderNode($node, $document));

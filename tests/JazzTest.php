@@ -123,4 +123,10 @@ class JazzTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTag($expected, $actual);
     }
+
+    function testGetDocumentByReference()
+    {
+        Jazz::render(["#p", "Foo"], $doc);
+        $this->assertInstanceOf("\\DOMDocument", $doc);
+    }
 }

@@ -114,8 +114,7 @@ class Jazz
         }
 
         if (!isset($content)) {
-            $out .= " />";
-            return $out;
+            return $out . " />";
         }
 
         $out .= ">";

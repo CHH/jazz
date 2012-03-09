@@ -23,6 +23,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+if (!extension_loaded("dom")) {
+    throw new \RuntimeException(
+        "Jazz requires the DOM Extension. Please make sure it's enabled."
+    );
+}
+
 # Converts nested arrays to HTML.
 #
 # Examples

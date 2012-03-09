@@ -47,11 +47,10 @@ THE SOFTWARE.
 #
 class Jazz
 {
-    # Renders the given node. A node can actually be a single tag,
-    # text content or a list of sub nodes.
+    # Public: Renders the given node. 
     #
-    # node - Tag as Array, Array of sub nodes or a single stringable 
-    #        element.
+    # node - Tag as Array, Array of sub nodes or a single 
+    #        stringable element.
     # 
     # Returns HTML as String.
     static function render($node)
@@ -73,9 +72,24 @@ class Jazz
         return $out;
     }
 
+    # Checks if the provided node hash is a tag, by 
+    # looking if the first element is a string that starts
+    # with a "#".
+    #
+    # node - Array.
+    #
+    # Examples
+    #
+    #   print_r(static::isTag(["#h1", "foo"]));
+    #   # => bool(true)
+    #
+    #   print_r(static::isTag("foo"));
+    #   # => bool(false)
+    #
+    # Returns True or False.
     protected static function isTag($node)
     {
-        return is_string(@$node[0]) and substr($node[0], 0, 1) == "#";
+        return is_array($node) and is_string(@$node[0]) and substr($node[0], 0, 1) == "#";
     }
 
     # Renders a HTML Tag.

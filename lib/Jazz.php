@@ -2,12 +2,12 @@
 
 class Jazz
 {
-    static function render($node, $escape = true)
+    static function render($node)
     {
         $out = "";
 
         if (is_array($node)) {
-            if (is_string($node[0]) and $node[0][0] == "#") {
+            if (is_string($node[0]) and substr($node[0], 0, 1) == "#") {
                 $out .= static::renderHtmlTag($node);
             } else {
                 foreach ($node as $n) {
@@ -15,7 +15,7 @@ class Jazz
                 }
             }
         } else {
-            $out .= $escape ? htmlentities($node) : $node;
+            $out .= $node;
         }
 
         return $out;
@@ -54,7 +54,7 @@ class Jazz
         }
 
         $out .= ">";
-        if ($content) $out .= static::render($content);
+        $out .= $content ? static::render($content) : "";
         $out .= "</$tagName>";
 
         return $out;

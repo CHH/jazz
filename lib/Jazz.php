@@ -37,10 +37,21 @@ if (!extension_loaded("dom")) {
 #   # => "<h1>It works</h1>"
 #
 #   echo Jazz::render(["#br"]);
-#   # => "<br />"
-#
+#   # string("<br>")
+#   
+#   echo Jazz::render([
+#     ["section", ["class" => "content"], [
+#       ["#p", "This is a paragraph."],
+#       ["#p", "This is a second paragraph."]
+#     ]]
+#   ]);
+#   # string("<section class="content">
+#   # <p>This is a paragraph.</p>
+#   # <p>This is a second paragraph.</p>
+#   # </section>")
+#   
 #   echo Jazz::render(["#img", ["src" => "/foo.png"]]);
-#   # => "<img src="/foo.png" />"
+#   # string("<img src="/foo.png">")
 #
 #   $ul = ["#ul", []];
 #
@@ -49,7 +60,7 @@ if (!extension_loaded("dom")) {
 #   }
 #
 #   echo Jazz::render($ul);
-#   # => "<ul><li>Foo</li><li>Bar</li><li>Baz</li></ul>"
+#   # string("<ul><li>Foo</li><li>Bar</li><li>Baz</li></ul>")
 #
 class Jazz
 {

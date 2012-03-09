@@ -53,23 +53,27 @@ class Jazz
     #        stringable element.
     # 
     # Returns HTML as String.
-    static function render($node)
+    static function render($node, $document = null)
     {
-        $out = "";
+        if (null === $document) {
+            $document = new \DOMDocument;
+        }
 
         if (is_array($node)) {
             if (static::isTag($node)) {
-                $out .= static::renderHtmlTag($node);
+                $document->appendChild(static::renderHtmlTag($node, $document));
             } else {
                 foreach ($node as $n) {
-                    $out .= static::render($n);
+                    foreach (static::render($n, $document)->childNodes as $el) {
+                        $document->appendChild($el);
+                    }
                 }
             }
         } else {
-            $out .= $node;
+            $document->appendChild($document->createTextNode($node));
         }
 
-        return $out;
+        return $document;
     }
 
     # Checks if the provided node hash is a tag, by 
@@ -97,7 +101,7 @@ class Jazz
     # node - Tag as Array.
     #
     # Returns the HTML as String.
-    protected static function renderHtmlTag($node)
+    protected static function renderHtmlTag($node, $document)
     {
         # Strip the leading "#"
         $tagName    = substr(array_shift($node), 1);
@@ -118,21 +122,22 @@ class Jazz
             }
         }
 
-        $out = "<$tagName";
+        $out = $document->createElement($tagName);
 
         foreach ($attributes as $attr => $value) {
             if (is_array($value)) $value = join(" ", $value);
-            $out .= " $attr=\"$value\"";
+            $out->setAttribute($attr, $value);
         }
 
         if (!isset($content)) {
-            return $out . " />";
+            return $out;
         }
 
-        $out .= ">";
-        $out .= $content ? static::render($content) : "";
-        $out .= "</$tagName>";
-
+        if($content) {
+            foreach (static::render($content, $document)->childNodes as $node) {
+                $out->appendChild($node);
+            }
+        }
         return $out;
     }
 }

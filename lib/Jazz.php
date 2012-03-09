@@ -144,10 +144,10 @@ class Jazz
             $el = $document->createDocumentFragment();
 
             foreach ((array) $node as $child) {
-                if (is_string($child)) {
-                    $el->appendChild($document->createTextNode($child));
-                } else {
+                if (is_array($child)) {
                     $el->appendChild(static::renderNode($child, $document));
+                } else {
+                    $el->appendChild($document->createTextNode((string) $child));
                 }
             }
         }

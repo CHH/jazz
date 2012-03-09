@@ -6,7 +6,9 @@ class JazzTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             "<br>\n",
-            Jazz::render(["#br"])
+            Jazz::render(
+                ["#br"]
+            )
         );
     }
 
@@ -14,7 +16,9 @@ class JazzTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTag(
             ["tag" => "img", "attributes" => ["src" => "/foo/bar.png"]],
-            Jazz::render(["#img", ["src" => "/foo/bar.png"]])
+            Jazz::render(
+                ["#img", ["src" => "/foo/bar.png"]]
+            )
         );
     }
 
@@ -60,9 +64,11 @@ class JazzTest extends \PHPUnit_Framework_TestCase
                     "content" => "Front Page"
                 ]
             ],
-            Jazz::render(["#nav", ["class" => "main"], [
-                ["#a", ["href" => "/"], "Front Page"]
-            ]])
+            Jazz::render(
+                ["#nav", ["class" => "main"], [
+                    ["#a", ["href" => "/"], "Front Page"]
+                ]]
+            )
         );
     }
 

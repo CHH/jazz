@@ -85,15 +85,11 @@ class Jazz
 
     # Renders a HTML Tag.
     #
-    # node - Tag as Array.
+    # node - Single Node.
     #
-    # Returns the HTML as String.
+    # Returns a DOMNode.
     protected static function renderNode($node, $document)
     {
-        if (is_string($node)) {
-            return $document->createTextNode($node);
-        }
-
         if (static::isTag($node)) {
             # Strip the leading "#"
             $tagName    = substr(array_shift($node), 1);
@@ -127,8 +123,12 @@ class Jazz
         } else {
             $el = $document->createDocumentFragment();
 
-            foreach ($node as $child) {
-                $el->appendChild(static::renderNode($child, $document));
+            foreach ((array) $node as $child) {
+                if (is_string($child)) {
+                    $el->appendChild($document->createTextNode($child));
+                } else {
+                    $el->appendChild(static::renderNode($child, $document));
+                }
             }
         }
 

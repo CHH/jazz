@@ -103,9 +103,9 @@ class Jazz
         return is_array($node) and is_string(@$node[0]) and substr($node[0], 0, 1) == "#";
     }
 
-    # Renders a HTML Tag.
+    # Renders a single Node.
     #
-    # node     - Single Node.
+    # node     - Single Node, tag array, node list or String.
     # document - Document for DOMNodes.
     #
     # Returns a DOMNode.

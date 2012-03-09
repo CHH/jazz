@@ -119,7 +119,9 @@ class JazzTest extends \PHPUnit_Framework_TestCase
             "content" => "Foo"
         ];
 
-        $actual = Jazz::render(["#p", ["class" => ["foo", "bar", "baz"]], "Foo"]);
+        $actual = Jazz::render(
+            ["#p", ["class" => ["foo", "bar", "baz"]], "Foo"]
+        );
 
         $this->assertTag($expected, $actual);
     }

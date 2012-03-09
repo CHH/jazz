@@ -25,7 +25,7 @@ THE SOFTWARE.
 
 if (!extension_loaded("dom")) {
     throw new \RuntimeException(
-        "Jazz requires the DOM Extension. Please make sure it's enabled."
+        "Jazz requires the DOM Extension. Make sure it's enabled."
     );
 }
 
@@ -134,7 +134,7 @@ class Jazz
 
             foreach ($attributes as $attr => $value) {
                 if (is_array($value)) $value = join(" ", $value);
-                $el->setAttribute($attr, $value);
+                $el->setAttribute($attr, (string) $value);
             }
 
             if (isset($content)) {

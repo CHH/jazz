@@ -71,7 +71,7 @@ class Jazz
     # document - DOMDocument instance or variable, optional. Use this 
     #            if you want to set custom options on the document.
     #            This is also a reference, so just pass a variable if
-    #            you want to get hold of the created DOMDocument for
+    #            you want to obtain the created DOMDocument for
     #            other purposes.
     # 
     # Returns HTML as String.
@@ -105,7 +105,8 @@ class Jazz
 
     # Renders a HTML Tag.
     #
-    # node - Single Node.
+    # node     - Single Node.
+    # document - Document for DOMNodes.
     #
     # Returns a DOMNode.
     protected static function renderNode($node, $document)

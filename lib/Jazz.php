@@ -57,11 +57,9 @@ class Jazz
     # Returns HTML as String.
     static function render($node, $document = null)
     {
-        if (null === $document) {
-            $document = new \DOMDocument;
-        }
-
+        $document = $document ?: new \DOMDocument;
         $document->appendChild(static::renderNode($node, $document));
+
         return $document->saveHTML();
     }
 

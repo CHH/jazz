@@ -101,12 +101,12 @@ class Jazz
                 );
             }
 
-            foreach ($node as $el) {
+            foreach ($node as $argv) {
                 # Is the tag argument an attributes array?
-                if (is_array($el) and count(array_filter(array_keys($el), "is_string")) > 0) {
-                    $attributes = $el;
+                if (is_array($argv) and count(array_filter(array_keys($argv), "is_string")) > 0) {
+                    $attributes = $argv;
                 } else {
-                    $content = $el;
+                    $content = $argv;
                 }
             }
 

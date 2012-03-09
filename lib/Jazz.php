@@ -89,22 +89,20 @@ class Jazz
         $tagName    = substr(array_shift($node), 1);
         $attributes = array();
 
-        # Short Tag
-        if (sizeof($node) == 1) {
-            # Look if the second element is an associative attributes
-            # array or a body.
-            if (is_array($node[0]) and is_string(key($node[0]))) {
-                $attributes = $node[0];
-            } else {
-                $content = $node[0];
-            }
-        } else if (sizeof($node) == 2) {
-            list($attributes, $content) = $node;
-
-        } else if (sizeof($node) > 2) {
+        if (sizeof($node) > 2) {
             throw new \UnexpectedValueException(
                 "Tags must not consist of more than three elements"
             );
+        }
+
+        foreach ($node as $el) {
+            # Look if the second element is an associative attributes
+            # array or a body.
+            if (is_array($el) and is_string(key($el))) {
+                $attributes = $el;
+            } else {
+                $content = $el;
+            }
         }
 
         $out = "<$tagName";

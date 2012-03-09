@@ -141,16 +141,14 @@ class Jazz
             if (isset($content)) {
                 $el->appendChild(static::renderNode($content, $document));
             }
-        } else {
+        } else if (is_array($node)) {
             $el = $document->createDocumentFragment();
 
-            foreach ((array) $node as $child) {
-                if (is_array($child)) {
-                    $el->appendChild(static::renderNode($child, $document));
-                } else {
-                    $el->appendChild($document->createTextNode((string) $child));
-                }
+            foreach ($node as $child) {
+                $el->appendChild(static::renderNode($child, $document));
             }
+        } else {
+            $el = $document->createTextNode((string) $node);
         }
 
         return $el;

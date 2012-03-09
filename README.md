@@ -55,15 +55,13 @@ as body.
 
 Tags can be written in different forms, just like in HTML:
 
- * Short. For example `["#br"]` becomes `<br />`.
+ * Short. For example `["#br"]` becomes `<br>`.
  * Short, with Attributes. For example `["#img", ["src" => "/foo/bar.png"]]` 
-   becomes `<img src="/foo/bar.png" />`.
+   becomes `<img src="/foo/bar.png">`.
  * Short, with Body: For example `["#p", "Foo"]` becomes
    `<p>Foo</p>`.
  * Long Form: For example `["#h1", ["role" => "banner"], "Hello World"]`
    becomes `<h1 role="banner">Hello World</h1>`.
-
-Jazz makes self-closed (`/>`) tags when no body is passed.
 
 ## Install
 

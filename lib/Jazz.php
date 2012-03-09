@@ -49,8 +49,10 @@ class Jazz
 {
     # Public: Renders the given node. 
     #
-    # node - Tag as Array, Array of sub nodes or a single 
-    #        stringable element.
+    # node     - Tag as Array, Array of sub nodes or a single 
+    #            stringable element.
+    # document - DOMDocument instance, optional. Use this 
+    #            if you want to set custom options on the document.
     # 
     # Returns HTML as String.
     static function render($node, $document = null)

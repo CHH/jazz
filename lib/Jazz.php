@@ -107,6 +107,7 @@ class Jazz
         $out = "<$tagName";
 
         foreach ($attributes as $attr => $value) {
+            if (is_array($value)) $value = join(" ", $value);
             $out .= " $attr=\"$value\"";
         }
 

@@ -46,9 +46,9 @@ It's in this case not shorter, but it's easily extendable, and the intent is cle
 ## Hello World
 
     <?php
-
+    
     use Jazz;
-
+    
     $html = [
         ["#h1", "Hello World"],
         ["#p", ["class" => "intro"], [
@@ -56,11 +56,11 @@ It's in this case not shorter, but it's easily extendable, and the intent is cle
             "Here is a second line.",
 
             ["#a", ["href" => "https://github.com/CHH/Jazz"], [
-                "This is a link."
+                "Jazz is awesome."
             ]]
         ]]
     ];
-
+    
     echo Jazz::render($html);
     # <h1>Hello World</h1>
     # <p>This is some content for this element.
@@ -116,14 +116,26 @@ Require `chh/jazz` in your application's `composer.json`:
         }
     }
 
+Then install the defined dependencies:
+
+	% php composer.phar install
+
 Load composer's class loader:
 
     <?php
 
     require_once("vendor/.composer/autoload.php");
 
+* * *
+
+**Not using composer?** The `lib/Jazz.php` file has no dependencies, so
+you can grab this file, copy it to your project directory and require it in
+your application (though you should at least _consider_ using [composer][] in your application anyway).
+
+[composer]: http://github.com/composer/composer
+
 ## License
 
 Jazz is licensed under the MIT license, bundled with the Source Code in
-the file `LICENSE.txt` as well as contained in the class file.
+the file `LICENSE.txt`.
 

@@ -2,10 +2,10 @@
 
 namespace Bob;
 
-task("default", array("test"));
+task("default", ["test"]);
 
 desc("Runs PHPUnit Test Suite");
-task("test", array("phpunit.xml"), function() {
+task("test", ["phpunit.xml"], function() {
     sh("phpunit");
 });
 
@@ -15,6 +15,6 @@ task("readme", function() {
     `open README.html`;
 });
 
-fileTask("phpunit.xml", array("phpunit.dist.xml"), function() {
+fileTask("phpunit.xml", ["phpunit.dist.xml"], function() {
     copy("phpunit.dist.xml", "phpunit.xml");
 });

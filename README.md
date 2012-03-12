@@ -52,8 +52,7 @@ It's in this case not shorter, but it's easily extendable, and the intent is cle
     $html = [
         ["#h1", "Hello World"],
         ["#p", ["class" => "intro"], [
-            "This is some content for this element.",
-            "Here is a second line.",
+            "Jazz turns a nested, \"lispy\" array into HTML with simple rules."
 
             ["#a", ["href" => "https://github.com/CHH/Jazz"], [
                 "Jazz is awesome."

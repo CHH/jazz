@@ -72,30 +72,6 @@ class JazzTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    function testEncodesTextContent()
-    {
-        return $this->markTestSkipped("Have to think about this feature...");
-
-        $this->assertEquals(
-            '<p>This is encoded: &lt;p&gt;</p>',
-            Jazz::render(["#p", "This is encoded: <p>"])
-        );
-    }
-
-    function testNoEscape()
-    {
-        return $this->markTestSkipped("Have to think about this feature...");
-
-        $this->assertEquals(
-            '<p>This is not encoded: <a name="bar">Foo</a></p>',
-            Jazz::render(
-                ["#p", [
-                    ["!!", 'This is not encoded: <a name="bar">Foo</a>']
-                ]]
-            )
-        );
-    }
-
     function testJoinsNodeListWithoutRootElement()
     {
         $this->assertEquals(

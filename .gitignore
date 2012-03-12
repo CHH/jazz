@@ -1,3 +1,4 @@
-phpunit.xml
 vendor/
+phpunit.xml
 README.html
+tags

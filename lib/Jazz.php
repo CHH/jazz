@@ -66,7 +66,7 @@ class Jazz
 {
     # Public: Renders the given node. 
     #
-    # node     - Tag as Array, Array of sub nodes or a single 
+    # node     - Single Tag as Array, Array of sub nodes or a single 
     #            stringable element.
     # document - DOMDocument instance or variable, optional. Use this 
     #            if you want to set custom options on the document.
@@ -123,7 +123,7 @@ class Jazz
             }
 
             foreach ($node as $argv) {
-                # Is the tag argument an attributes array?
+                # Is the argument an associative array of attributes?
                 if (is_array($argv) and count(array_filter(array_keys($argv), "is_string")) > 0) {
                     $attributes = $argv;
                 } else {
@@ -135,6 +135,7 @@ class Jazz
 
             foreach ($attributes as $attr => $value) {
                 if (is_array($value)) $value = join(" ", $value);
+
                 $el->setAttribute($attr, (string) $value);
             }
 

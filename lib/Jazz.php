@@ -149,7 +149,9 @@ class Jazz
                 $el->appendChild(static::renderNode($child, $document));
             }
         } else {
-            $el = $document->createTextNode((string) $node);
+            $node = (string) $node;
+            if (!empty($node)) $node .= "\n";
+            $el = $document->createTextNode($node);
         }
 
         return $el;

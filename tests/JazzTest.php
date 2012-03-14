@@ -75,7 +75,7 @@ class JazzTest extends \PHPUnit_Framework_TestCase
     function testJoinsNodeListWithoutRootElement()
     {
         $this->assertEquals(
-            "<p>Foo</p><p>Bar</p>\n",
+            "<p>Foo\n</p><p>Bar\n</p>\n",
             Jazz::render([
                 ["#p", "Foo"],
                 ["#p", "Bar"]
@@ -112,5 +112,22 @@ class JazzTest extends \PHPUnit_Framework_TestCase
     {
         Jazz::render(["#p", "Foo"], $doc);
         $this->assertInstanceOf("\\DOMDocument", $doc);
+    }
+
+    function testJoinsNodeListWithLineSeparators()
+    {
+        $this->assertTag(
+            [
+                "tag" => "p",
+                "content" => "Foo\nBar\nBaz"
+            ],
+            Jazz::render(
+                ["#p", [
+                    "Foo",
+                    "Bar",
+                    "Baz"
+                ]]
+            )
+        );
     }
 }

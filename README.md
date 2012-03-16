@@ -12,17 +12,17 @@ generate a bit of HTML and don't want to use a template, for the sake
 of performance or simplicity.
 
 At first you need only one tag, you think "Fine I'm using a String",
-and then you need one attribute, then a second attribute, maybe a third
-attribute. Then you find yourself in a big mess. 
+and then you need to add an attribute, then a second one, maybe a third
+one. Then you find yourself in a big mess. 
 
-I've written plenty of those code bits:
+I've written plenty of those code bits, and I'm tired of it:
 
     $html  = '<div class="widget '.join(" ", $classes).'" id="'.$id.'" style="display: none;" data-widget-name="' . $widgetName . '">';
     $html .= '<ul>' . $this->getSomeListItems() . '</ul>';
     $html .= '</div>';
 
 It's not only hard to grasp, but also plain ugly and also adding
-attributes, or adding other sub elements is very messy.
+attributes, or adding other sub elements is cumbersome.
 
 Now relax with some Jazz:
 

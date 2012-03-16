@@ -50,9 +50,12 @@ It's in this case not shorter, but it's easily extendable, and the intent is cle
     use Jazz;
     
     $html = [
+    	# What a funky Headline!
         ["#h1", "Hello World"],
+        
+        # This is PHP Code, so comments work as expected.
         ["#p", ["class" => "intro"], [
-            "Jazz turns a nested, \"lispy\" array into HTML using a simple syntax."
+            "Jazz turns a nested, \"lispy\" array into HTML using a simple syntax.",
 
             ["#a", ["href" => "https://github.com/CHH/Jazz"], [
                 "Jazz is awesome."
@@ -62,8 +65,7 @@ It's in this case not shorter, but it's easily extendable, and the intent is cle
     
     echo Jazz::render($html);
     # <h1>Hello World</h1>
-    # <p>This is some content for this element.
-    # Here is a second line.
+    # <p class="intro">Jazz turns a nested, "lispy" array into HTML using a simple syntax.
     # <a href="https://github.com/CHH/Jazz">This is a link.</a>
     # </p>
 

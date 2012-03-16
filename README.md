@@ -11,8 +11,8 @@ I wrote Jazz, because there are always places where you have to
 generate a bit of HTML and don't want to use a template, for the sake
 of performance or simplicity.
 
-At first you need only one tag, you think "Fine I'm using a String.".
-Then you need an attribute, then a second attribute, maybe a third
+At first you need only one tag, you think "Fine I'm using a String",
+and then you need one attribute, then a second attribute, maybe a third
 attribute. Then you find yourself in a big mess. 
 
 I've written plenty of those code bits:

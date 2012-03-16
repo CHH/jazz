@@ -2,3 +2,4 @@ vendor/
 phpunit.xml
 README.html
 tags
+composer.lock

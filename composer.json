@@ -10,9 +10,7 @@
     ],
     "license": "MIT",
     "autoload": {
-        "psr-0": {
-            "Jazz": "lib/"
-        }
+        "classmap": ["lib"]
     },
     "require": {
         "php": ">=5.3.3"

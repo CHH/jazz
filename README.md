@@ -66,7 +66,7 @@ It's in this case not shorter, but it's easily extendable, and the intent is cle
     echo Jazz::render($html);
     # <h1>Hello World</h1>
     # <p class="intro">Jazz turns a nested, "lispy" array into HTML using a simple syntax.
-    # <a href="https://github.com/CHH/Jazz">This is a link.</a>
+    # <a href="https://github.com/CHH/Jazz">Jazz is awesome.</a>
     # </p>
 
 ## Syntax
